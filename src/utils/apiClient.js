@@ -13,7 +13,7 @@ const apiClient = axios.create({
     accept: "application/json"
   },
   
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 apiClient.interceptors.request.use((config) => {
