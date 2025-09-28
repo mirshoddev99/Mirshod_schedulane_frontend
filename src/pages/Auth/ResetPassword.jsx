@@ -15,7 +15,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+
+// import axios from "axios";
+import apiClient from '../../utils/apiClient';
+
+
 import "../../styles/resetpassword.css";
 
 export default function ResetPassword({ onAlert }) {
@@ -49,7 +53,7 @@ export default function ResetPassword({ onAlert }) {
     async function validate() {
       if (!token) return;
       try {
-        await axios.post("http://localhost:8000/authx/password_reset/validate_token/", { token });
+        await apiClient.post("/authx/password_reset/validate_token/", { token });
         setValidToken(true);
       } catch {
         setMsg({ ok: false, text: "This reset link is invalid or has expired." });
@@ -65,7 +69,7 @@ export default function ResetPassword({ onAlert }) {
     setLoading(true);
     setMsg(null);
     try {
-      await axios.post("http://localhost:8000/authx/password_reset/", { email });
+      await apiClient.post("/authx/password_reset/", { email });
       setMsg({
         ok: true,
         text: "If that email is registered, a reset link has been sent. Please check your inbox.",
@@ -94,7 +98,7 @@ export default function ResetPassword({ onAlert }) {
     setMsg(null);
 
     try {
-      await axios.post("http://localhost:8000/authx/password_reset/confirm/", {
+      await apiClient.post("/authx/password_reset/confirm/", {
         token,
         password,
       });

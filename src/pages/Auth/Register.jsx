@@ -18,9 +18,15 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import axios from "axios";
+
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/auth.css"; 
+
+
+
+import apiClient from '../../utils/apiClient';
+const BACKEND_PRODUCTION_URL = "schedulane-gga2cwfhgvcnhmhj.koreasouth-01.azurewebsites.net"
 
 const Register = ({ onAlert }) => {
   const navigate = useNavigate();
@@ -47,7 +53,7 @@ const Register = ({ onAlert }) => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8000/authx/register/", {
+      const response = await apiClient.post("/authx/register/", {
         username,
         email,
         password,

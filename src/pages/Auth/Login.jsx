@@ -23,7 +23,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import axios from "axios";
+
+// import axios from "axios";
+import apiClient from '../../utils/apiClient';
+
 import { useNavigate } from "react-router-dom";
 import "../../styles/auth.css"; // keep if you have other shared styles
 
@@ -39,7 +42,7 @@ const Login = ({ onAlert }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8000/authx/token/", {
+      const response = await apiClient.post("/authx/token/", {
         username,
         password,
       });
