@@ -84,7 +84,12 @@ export default function EditProfile({ onUpdated }) {
     if (photoFile) fd.append("photo", photoFile, photoFile.name);
 
     try {
-      const { data } = await apiClient.patch("/authx/profile/", fd, {});
+      const { data } = await apiClient.patch("/authx/profile/", fd, {
+         headers: {
+                      "Content-Type": "multipart/form-data",
+                  },
+      });
+      
       setSuccess(data?.message || "Saved!");
 
       setTimeout(() => {

@@ -272,7 +272,7 @@ export default function Addjounal() {
     try {
       setSavingReview(true);
       await apiClient.patch(`/journal/my-reviews/${editingId}/`, {
-        rating: Number(editRating), comment: editComment,
+        rating: Number(editRating), comment: editComment, 
       });
       cancelEdit(); await loadReviews();
     } catch (e) {
