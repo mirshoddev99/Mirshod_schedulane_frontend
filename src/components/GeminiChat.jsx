@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai@0.11.2"
 import ReactMarkdown from 'react-markdown';
 
-const genAI  = new GoogleGenerativeAI("AIzaSyCVPCgS_yYhlHiyoZBg7oLGCxRfhLHNC3s");
+const genAI  = new GoogleGenerativeAI("AIzaSyCnes1PSV_WM19CPydyL_CFlErqV85MBlc");
 
 const GeminiChat = ({ maxMemory = 10, placeholder = "Type a message...", itineraryContext = "", weatherContext = ""}) => {
   const [messages, setMessages] = useState([]);
@@ -25,7 +25,8 @@ const GeminiChat = ({ maxMemory = 10, placeholder = "Type a message...", itinera
     setInput("");
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+      // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
       const systemInstruction = `You are an expert travel assistant. The user has the following itinerary and might ask questions about it. Use this context to provide helpful answers.\n\n--- ITINERARY START ---\n${itineraryContext}\n--- ITINERARY END --- --- WEATHER START ---${weatherContext}--- WEATHER END ---\n\n`;
       
